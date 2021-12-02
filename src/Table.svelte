@@ -6,13 +6,13 @@
     <tr>
         <th>Title</th>
         <th>Country</th>
-        <th>Release Date</th>
+        <th>Release Year</th>
     </tr>
     {#each films as film, i}
         <tr>
             <td>{film.title}</td>
             <td>{film.country}</td>
-            <td>{film.release_date}</td>
+            <td>{film.release_year}</td>
         </tr>
     {/each}
 </table>

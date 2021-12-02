@@ -1,6 +1,6 @@
 <script>
 	import Table from './Table.svelte'
-	let films = [{title: 'a', country: 'b', release_date: 'c'}];
+	let films = [{title: 'a', country: 'b', release_year: 'c'}];
 </script>
 
 <main>
