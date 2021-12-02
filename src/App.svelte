@@ -1,8 +1,11 @@
 <script>
+	import Table from './Table.svelte'
+	let films = [{title: 'a', country: 'b', release_date: 'c'}];
 </script>
 
 <main>
-	<h1>Что посмотреть?</h1>
+	<h1>What to Watch</h1>
+	<Table films={films}/>
 </main>
 
 <style>
