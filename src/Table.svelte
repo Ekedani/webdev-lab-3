@@ -3,21 +3,21 @@
 </script>
 
 <table>
-    {JSON.stringify($films)}
     {#if $films.loading}
         <h1>Loading...</h1>
     {:else if $films.error}
+        <h1>Error!</h1>
     {:else if $films.data}
         <tr>
             <th>Title</th>
             <th>Country</th>
             <th>Release Year</th>
         </tr>
-        {#each $films.data as film}
+        {#each $films.data.Films as film}
             <tr>
-                <td>${film.title}</td>
-                <td>${film.country}</td>
-                <td>${film.release_year}</td>
+                <td>{film.title}</td>
+                <td>{film.country}</td>
+                <td>{film.release_year}</td>
             </tr>
         {/each}
     {/if}
