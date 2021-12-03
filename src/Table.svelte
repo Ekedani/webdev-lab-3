@@ -3,18 +3,24 @@
 </script>
 
 <table>
-    <tr>
-        <th>Title</th>
-        <th>Country</th>
-        <th>Release Year</th>
-    </tr>
-    {#each films as film, i}
+    {JSON.stringify($films)}
+    {#if $films.loading}
+        <h1>Loading...</h1>
+    {:else if $films.error}
+    {:else if $films.data}
         <tr>
-            <td>{film.title}</td>
-            <td>{film.country}</td>
-            <td>{film.release_year}</td>
+            <th>Title</th>
+            <th>Country</th>
+            <th>Release Year</th>
         </tr>
-    {/each}
+        {#each $films.data as film}
+            <tr>
+                <td>${film.title}</td>
+                <td>${film.country}</td>
+                <td>${film.release_year}</td>
+            </tr>
+        {/each}
+    {/if}
 </table>
 
 <style>
