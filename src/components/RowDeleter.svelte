@@ -9,10 +9,10 @@
     export let filmID;
 
     async function handleClick() {
-        try{
+        try {
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_DeleteFilmById(filmID));
             open(MessageBox, {modalText: "Success!"})
-        }catch(exception){
+        } catch (exception) {
             open(MessageBox, {modalText: "Error has happened!"})
         }
     }
