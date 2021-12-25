@@ -71,16 +71,6 @@ export default {
         // instead of npm run dev), minify
         production && terser(),
 
-        replace({
-            FOO: 'bar',
-
-            // 2 level deep object should be stringify
-            process: JSON.stringify({
-                env: {
-                    isProd: production,
-                }
-            }),
-        })
     ],
     watch: {
         clearScreen: false

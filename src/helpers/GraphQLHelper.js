@@ -1,6 +1,6 @@
 class GraphQLHelper{
     constructor() {
-        this.API_URL = process.env.API_URL;
+        this.API_URL = "https://webdev-labs.herokuapp.com/v1/graphql";
     }
 
     async fetchGraphQL(operationsDoc, operationName, variables) {
