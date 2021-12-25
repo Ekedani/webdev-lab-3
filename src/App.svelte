@@ -3,8 +3,7 @@
     import {WebSocketLink} from "@apollo/client/link/ws";
     import {setClient, subscribe} from "svelte-apollo";
     import {GraphQLRequests} from "./helpers/GraphQLRequests";
-
-    import Table from './Table.svelte'
+    import Table from './components/Table.svelte'
 
 
     function createApolloClient() {
@@ -23,8 +22,8 @@
 
     const client = createApolloClient();
     setClient(client);
-
     const films = subscribe(GraphQLRequests.SUBSCRIPTION_AllFilms);
+
 </script>
 
 <main>
@@ -41,7 +40,7 @@
     }
 
     h1 {
-        color: #ff3e00;
+        color: #f44336;
         text-transform: uppercase;
         font-size: 4em;
         font-weight: 100;

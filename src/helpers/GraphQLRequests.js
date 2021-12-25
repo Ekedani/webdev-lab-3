@@ -7,7 +7,18 @@ export class GraphQLRequests {
       title
       country
       release_year
+      id
     }
   }`;
 
+  static MUTATION_DeleteFilmById(id){
+    return `mutation MyMutation{
+      delete_Films_by_pk(id: "${id}") {
+        country
+        id
+        release_year
+        title
+      }
+    }`
+  }
 }

@@ -1,4 +1,5 @@
 <script>
+    import RowDeleter from "./RowDeleter.svelte";
     export let films;
 </script>
 
@@ -12,12 +13,14 @@
             <th>Title</th>
             <th>Country</th>
             <th>Release Year</th>
+            <th>Deletion</th>
         </tr>
         {#each $films.data.Films as film}
             <tr>
                 <td>{film.title}</td>
                 <td>{film.country}</td>
                 <td>{film.release_year}</td>
+                <td><RowDeleter filmID={film.id}/></td>
             </tr>
         {/each}
     {/if}
@@ -39,7 +42,7 @@
     table th {
         padding-top: 12px;
         padding-bottom: 12px;
-        background-color: #ff3e00;
+        background-color: #f44336;
         color: white;
     }
 
