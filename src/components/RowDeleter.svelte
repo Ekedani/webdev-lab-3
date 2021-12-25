@@ -3,22 +3,31 @@
     import GraphQLHelper from '../helpers/GraphQLHelper'
     import {getContext} from 'svelte';
     import MessageBox from "./MessageBox.svelte";
+    import Loader from "./Loader.svelte";
 
     const {open} = getContext('simple-modal');
 
     export let filmID;
+    let isLoading = false;
 
     async function handleClick() {
+        isLoading = true;
         try {
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_DeleteFilmById(filmID));
             open(MessageBox, {modalText: "Success!"})
+            isLoading = false;
         } catch (exception) {
             open(MessageBox, {modalText: "Error has happened!"})
+            isLoading = false;
         }
     }
 </script>
 
-<button on:click={handleClick}>Delete</button>
+{#if !isLoading}
+    <button on:click={handleClick}>Delete</button>
+{:else if isLoading}
+    <Loader/>
+{/if}
 
 <style>
     button {

@@ -8,7 +8,7 @@
     {#if $films.loading}
         <Loader/>
     {:else if $films.error}
-
+        <p>Error has happened while loading! Please, try again later</p>
     {:else if $films.data}
         <tr>
             <th>Title</th>
