@@ -1,11 +1,20 @@
 <script>
     import {GraphQLRequests} from '../helpers/GraphQLRequests'
     import GraphQLHelper from '../helpers/GraphQLHelper'
+    import {getContext} from 'svelte';
+    import MessageBox from "./MessageBox.svelte";
+
+    const {open} = getContext('simple-modal');
 
     export let filmID;
-    async function handleClick(){
-        alert('Handled');
-        await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_DeleteFilmById(filmID));
+
+    async function handleClick() {
+        try{
+            await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_DeleteFilmById(filmID));
+            open(MessageBox, {modalText: "Success!"})
+        }catch(exception){
+            open(MessageBox, {modalText: "Error has happened!"})
+        }
     }
 </script>
 

@@ -1,14 +1,14 @@
 <script>
     import RowDeleter from "./RowDeleter.svelte";
-    import Spinner from "./Spinner.svelte";
+    import Loader from "./Loader.svelte";
     export let films;
 </script>
 
 <table>
     {#if $films.loading}
-        <Spinner/>
+        <Loader/>
     {:else if $films.error}
-        <h1>Error!</h1>
+
     {:else if $films.data}
         <tr>
             <th>Title</th>
@@ -30,7 +30,8 @@
 <style>
     table {
         border-collapse: collapse;
-        width: 50%;
+        width: 70%;
+        align-self: center;
         font-weight: 100;
     }
 

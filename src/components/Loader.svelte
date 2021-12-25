@@ -1,12 +1,12 @@
 <script>
     import {Circle} from 'svelte-loading-spinners'
 </script>
-<div>
+<div class="loader">
     <Circle color="#f44336"/>
 </div>
 
 <style>
-    div {
+    .loader {
         display: flex;
         align-items: center;
         justify-content: center;

@@ -4,7 +4,7 @@
     import {setClient, subscribe} from "svelte-apollo";
     import {GraphQLRequests} from "./helpers/GraphQLRequests";
     import Table from './components/Table.svelte'
-
+    import Modal from 'svelte-simple-modal';
 
     function createApolloClient() {
         const wsLink = new WebSocketLink({
@@ -28,7 +28,9 @@
 
 <main>
     <h1>What to Watch</h1>
-    <Table films={films}/>
+    <Modal>
+        <Table films={films}/>
+    </Modal>
 </main>
 
 <style>

@@ -17,15 +17,13 @@ class GraphQLHelper{
     }
 
     async startExecuteMyMutation(operationsDoc, variables = {}) {
-        console.log(operationsDoc);
         const { errors, data } = await this.executeMyMutation(
             operationsDoc,
             variables
         );
         if (errors) {
-            console.error(errors);
+            throw new Error(errors);
         }
-        console.log(data);
         return data;
     }
 
