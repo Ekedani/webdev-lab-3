@@ -1,11 +1,12 @@
 <script>
     import RowDeleter from "./RowDeleter.svelte";
+    import Spinner from "./Spinner.svelte";
     export let films;
 </script>
 
 <table>
     {#if $films.loading}
-        <h1>Loading...</h1>
+        <Spinner/>
     {:else if $films.error}
         <h1>Error!</h1>
     {:else if $films.data}
