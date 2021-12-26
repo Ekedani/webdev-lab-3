@@ -8,3 +8,4 @@
 .vercel
 .idea
 /.husky/_/
+/yarn-error.log
