@@ -23,9 +23,8 @@
     }
 </script>
 
-{#if !isLoading}
     <button on:click={handleClick}>Delete</button>
-{:else if isLoading}
+{#if isLoading}
     <Loader/>
 {/if}
 

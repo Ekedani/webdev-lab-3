@@ -1,16 +1,18 @@
-class GraphQLHelper{
+class GraphQLHelper {
     constructor() {
-        this.API_URL = "https://webdev-labs.herokuapp.com/v1/graphql";
+        /* eslint-disable */
+        this.API_URL = API_ROOT;
+        /* eslint-enable */
     }
 
     async fetchGraphQL(operationsDoc, operationName, variables) {
         const result = await fetch(this.API_URL, {
-            method: "POST",
+            method: 'POST',
             body: JSON.stringify({
                 query: operationsDoc,
                 variables: variables,
-                operationName: operationName,
-            }),
+                operationName: operationName
+            })
         });
 
         return await result.json();
@@ -28,7 +30,7 @@ class GraphQLHelper{
     }
 
     executeMyMutation(operationsDoc, variables) {
-        return this.fetchGraphQL(operationsDoc, "MyMutation", variables);
+        return this.fetchGraphQL(operationsDoc, 'MyMutation', variables);
     }
 }
 
