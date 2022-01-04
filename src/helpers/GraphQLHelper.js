@@ -24,7 +24,7 @@ class GraphQLHelper {
             variables
         );
         if (errors) {
-            throw new Error(errors);
+            throw new Error(errors[0].message);
         }
         return data;
     }
