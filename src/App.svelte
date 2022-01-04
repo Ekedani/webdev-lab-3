@@ -29,8 +29,8 @@
 
 <main>
     <h1>What to Watch</h1>
-    <FilmAdder/>
     <Modal>
+        <FilmAdder/>
         <Table films={films}/>
     </Modal>
 </main>

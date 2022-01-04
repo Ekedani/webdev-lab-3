@@ -22,4 +22,15 @@ export class GraphQLRequests {
       }
     }`;
     }
+
+    static MUTATION_InsertFilm(title, country, release_year) {
+        return `mutation MyMutation{
+      insert_Films_one(object: {title: "${title}", country: "${country}", release_year: "${release_year}"}) {
+        id
+        title
+        country
+        release_year
+      }
+    }`;
+    }
 }

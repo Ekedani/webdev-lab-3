@@ -1,7 +1,28 @@
 <script>
-    let title;
-    let film;
-    let year;
+    import GraphQLHelper from "../helpers/GraphQLHelper";
+    import {GraphQLRequests} from "../helpers/GraphQLRequests";
+    import MessageBox from "./MessageBox.svelte";
+    import Loader from "./Loader.svelte";
+    import {getContext} from "svelte";
+
+    const {open} = getContext('simple-modal');
+
+    let title = '';
+    let country = '';
+    let year = '';
+    let isLoading = false;
+
+    async function handleClick() {
+        isLoading = true;
+        try {
+            await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_InsertFilm(title, country, year));
+            open(MessageBox, {modalText: "Success!"})
+        } catch (exception) {
+            open(MessageBox, {modalText: "Error has happened!"})
+        } finally {
+            isLoading = false;
+        }
+    }
 </script>
 
 <div>
@@ -9,22 +30,26 @@
         Title <input bind:value={title}>
     </label>
     <label>
-        Film <input bind:value={film}>
+        Country <input bind:value={country}>
     </label>
     <label>
         Year <input bind:value={year}>
     </label>
-    <button>Add Film</button>
+    <button on:click={handleClick}>Add Film</button>
 </div>
+{#if isLoading}
+    <Loader/>
+{/if}
 
 <style>
-    div{
+    div {
         align-self: center;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         width: 75%;
     }
+
     button {
         background-color: white;
         color: black;
