@@ -18,7 +18,7 @@
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_InsertFilm(title, country, year));
             open(MessageBox, {modalText: "Success!"})
         } catch (exception) {
-            open(MessageBox, {modalText: "Error has happened!"})
+            open(MessageBox, {modalText: ("Error: " + exception.message)})
         } finally {
             isLoading = false;
         }

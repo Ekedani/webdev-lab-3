@@ -17,7 +17,7 @@
             open(MessageBox, {modalText: "Success!"})
             isLoading = false;
         } catch (exception) {
-            open(MessageBox, {modalText: "Error has happened!"})
+            open(MessageBox, {modalText: ("Error: " + exception.message)})
             isLoading = false;
         }
     }
