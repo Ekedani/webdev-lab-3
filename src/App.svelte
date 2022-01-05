@@ -6,6 +6,8 @@
     import Table from './components/Table.svelte'
     import Modal from 'svelte-simple-modal';
     import FilmAdder from "./components/FilmAdder.svelte";
+    import Loader from "./components/Loader.svelte";
+    import {isLoading} from "./store";
 
     function createApolloClient() {
         const wsLink = new WebSocketLink({
@@ -33,6 +35,9 @@
         <FilmAdder/>
         <Table films={films}/>
     </Modal>
+    {#if $isLoading}
+        <Loader/>
+    {/if}
 </main>
 
 <style>

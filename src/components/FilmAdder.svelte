@@ -4,23 +4,23 @@
     import MessageBox from "./MessageBox.svelte";
     import Loader from "./Loader.svelte";
     import {getContext} from "svelte";
+    import {isLoading} from "../store";
 
     const {open} = getContext('simple-modal');
 
     let title = '';
     let country = '';
     let year = '';
-    let isLoading = false;
 
     async function handleClick() {
-        isLoading = true;
         try {
+            isLoading.set(true);
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_InsertFilm(title, country, year));
             open(MessageBox, {modalText: "Success!"})
         } catch (exception) {
             open(MessageBox, {modalText: ("Error: " + exception.message)})
         } finally {
-            isLoading = false;
+            isLoading.set(false);
         }
     }
 </script>
@@ -37,9 +37,6 @@
     </label>
     <button on:click={handleClick}>Add Film</button>
 </div>
-{#if isLoading}
-    <Loader/>
-{/if}
 
 <style>
     div {
