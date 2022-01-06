@@ -36,7 +36,7 @@
     }
 
     table td, table th {
-        border: 1px solid #ddd;
+        border: 1px solid var(--table-border-color);
         padding: 8px;
         text-align: left;
     }
@@ -44,8 +44,8 @@
     table th {
         padding-top: 12px;
         padding-bottom: 12px;
-        background-color: #f44336;
-        color: white;
+        background-color: var(--main-color);
+        color: var(--element-background);
     }
 
 </style>

@@ -1,13 +1,13 @@
 <script>
-    import {ApolloClient, InMemoryCache} from '@apollo/client';
-    import {WebSocketLink} from "@apollo/client/link/ws";
-    import {setClient, subscribe} from "svelte-apollo";
-    import {GraphQLRequests} from "./helpers/GraphQLRequests";
-    import Table from './components/Table.svelte'
+    import { ApolloClient, InMemoryCache } from '@apollo/client';
+    import { WebSocketLink } from '@apollo/client/link/ws';
+    import { setClient, subscribe } from 'svelte-apollo';
+    import { GraphQLRequests } from './helpers/GraphQLRequests';
+    import Table from './components/Table.svelte';
     import Modal from 'svelte-simple-modal';
-    import FilmAdder from "./components/FilmAdder.svelte";
-    import Loader from "./components/Loader.svelte";
-    import {isLoading} from "./store";
+    import FilmAdder from './components/FilmAdder.svelte';
+    import Loader from './components/Loader.svelte';
+    import { isLoading } from './store';
 
     function createApolloClient() {
         const wsLink = new WebSocketLink({
@@ -27,6 +27,7 @@
     setClient(client);
     const films = subscribe(GraphQLRequests.SUBSCRIPTION_AllFilms);
 
+
 </script>
 
 <main>
@@ -41,6 +42,15 @@
 </main>
 
 <style>
+    :global(:root){
+        --main-color: #f44336;
+        --button-text: black;
+        --button-text-hover: white;
+        --element-background: white;
+        --table-border-color: #ddd;
+        --overlay-color: rgba(255,255,255,0.5);
+    }
+
     main {
         text-align: center;
         padding: 1em;
