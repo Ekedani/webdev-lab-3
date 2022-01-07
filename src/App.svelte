@@ -4,10 +4,11 @@
     import { setClient, subscribe } from 'svelte-apollo';
     import { GraphQLRequests } from './helpers/GraphQLRequests';
     import Table from './components/Table.svelte';
-    import Modal from 'svelte-simple-modal';
+    import Modal, { bind } from 'svelte-simple-modal';
     import FilmAdder from './components/FilmAdder.svelte';
     import Loader from './components/Loader.svelte';
-    import { isLoading } from './store';
+    import { isLoading, modal } from './store';
+    import MessageBox from './components/Message.svelte';
 
     function createApolloClient() {
         const wsLink = new WebSocketLink({
@@ -23,16 +24,21 @@
         });
     }
 
-    const client = createApolloClient();
-    setClient(client);
-    const films = subscribe(GraphQLRequests.SUBSCRIPTION_AllFilms);
-
+    let films;
+    let client;
+    try{
+        client = createApolloClient();
+        setClient(client);
+        films = subscribe(GraphQLRequests.SUBSCRIPTION_AllFilms);
+    } catch (exception){
+        modal.set(bind(MessageBox, { message: ("Error: " + exception.message)}));
+    }
 
 </script>
 
 <main>
     <h1>What to Watch</h1>
-    <Modal>
+    <Modal show={$modal}>
         <FilmAdder/>
         <Table films={films}/>
     </Modal>
@@ -61,7 +67,7 @@
     }
 
     h1 {
-        color: #f44336;
+        color: var(--main-color);
         text-transform: uppercase;
         font-size: 4em;
         font-weight: 100;

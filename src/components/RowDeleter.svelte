@@ -2,8 +2,10 @@
     import {GraphQLRequests} from '../helpers/GraphQLRequests'
     import GraphQLHelper from '../helpers/GraphQLHelper'
     import {getContext} from 'svelte';
-    import MessageBox from "./MessageBox.svelte";
-    import {isLoading} from "../store";
+    import Message from "./Message.svelte";
+    import { isLoading, modal } from '../store';
+    import { bind } from 'svelte-simple-modal';
+    import MessageBox from './Message.svelte';
 
     const {open} = getContext('simple-modal');
 
@@ -13,9 +15,9 @@
         isLoading.set(true);
         try {
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_DeleteFilmById(filmID));
-            open(MessageBox, {modalText: "Success!"})
+            open(Message, {message: "Success!"})
         } catch (exception) {
-            open(MessageBox, {modalText: ("Error: " + exception.message)})
+            modal.set(bind(MessageBox, { message: ("Error: " + exception.message)}));
         }finally {
             isLoading.set(false);
         }

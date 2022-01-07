@@ -7,7 +7,7 @@
 <table>
     {#if $films.loading}
         <Loader/>
-    {:else if $films.error}
+    {:else if $films.error || !$films}
         <p>Error has happened while loading! Please, try again later</p>
     {:else if $films.data}
         <tr>
