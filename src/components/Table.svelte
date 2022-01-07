@@ -47,5 +47,4 @@
         background-color: var(--main-color);
         color: var(--element-background);
     }
-
 </style>

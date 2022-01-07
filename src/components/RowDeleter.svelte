@@ -12,14 +12,14 @@
     export let filmID;
 
     async function handleClick() {
-        isLoading.set(true);
+        isLoading.update(n => n + 1);
         try {
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_DeleteFilmById(filmID));
             open(Message, {message: "Success!"})
         } catch (exception) {
             modal.set(bind(MessageBox, { message: ("Error: " + exception.message)}));
         }finally {
-            isLoading.set(false);
+            isLoading.update(n => n - 1);
         }
     }
 </script>

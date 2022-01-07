@@ -21,14 +21,14 @@
 
     async function handleClick() {
         try {
-            isLoading.set(true);
+            isLoading.update(n => n + 1);
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_InsertFilm(title, country, year));
             open(Message, {message: "Success!"})
             resetValues();
         } catch (exception) {
             modal.set(bind(MessageBox, { message: ("Error: " + exception.message)}));
         } finally {
-            isLoading.set(false);
+            isLoading.update(n => n - 1);
         }
     }
 </script>
@@ -70,6 +70,9 @@
         div {
             flex-direction: column;
             align-items: stretch;
+        }
+        button, input{
+            width: 100%;
         }
     }
 </style>
