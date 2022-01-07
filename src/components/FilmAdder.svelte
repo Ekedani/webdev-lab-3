@@ -9,9 +9,9 @@
 
     const {open} = getContext('simple-modal');
 
-    let title;
-    let country;
-    let year;
+    let title = '';
+    let country = '';
+    let year = '';
 
     function resetValues(){
         title = '';
@@ -31,8 +31,6 @@
             isLoading.set(false);
         }
     }
-
-    resetValues();
 </script>
 
 <div>
