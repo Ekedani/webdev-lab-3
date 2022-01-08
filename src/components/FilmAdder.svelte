@@ -23,7 +23,7 @@
 
     async function handleClick() {
         try {
-            isLoading.update(n => n + 1);
+            $isLoading++;
             // I also have these check on hasura, it's just additional safety for not sending invalid requests
             if(!title || !year){
                 throw Error("Title and year fields must be filled!");
@@ -37,8 +37,7 @@
         } catch (exception) {
             modal.set(bind(MessageBox, { message: ("Error: " + exception.message)}));
         } finally {
-            console.log("Done!");
-            isLoading.update(n => n - 1);
+            $isLoading--;
         }
     }
 </script>
