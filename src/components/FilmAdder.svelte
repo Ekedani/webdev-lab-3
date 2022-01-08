@@ -9,18 +9,19 @@
 
     const {open} = getContext('simple-modal');
 
-    let title = '';
-    let country = '';
-    let year = '';
+    const defaultValue = '';
+
+    let title = defaultValue;
+    let country = defaultValue;
+    let year = defaultValue;
 
     function resetValues(){
-        title = '';
-        country = '';
-        year = '';
+        title = defaultValue;
+        country = defaultValue;
+        year = defaultValue;
     }
 
     async function handleClick() {
-
         try {
             isLoading.update(n => n + 1);
             // I also have these check on hasura, it's just additional safety for not sending invalid requests
