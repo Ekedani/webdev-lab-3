@@ -1,6 +1,7 @@
 <script>
-    import RowDeleter from "./RowDeleter.svelte";
-    import Loader from "./Loader.svelte";
+    import RowDeleter from './RowDeleter.svelte';
+    import Loader from './Loader.svelte';
+
     export let films;
 </script>
 
@@ -10,20 +11,26 @@
     {:else if $films.error || !$films}
         <p>Error has happened while loading! Please, try again later</p>
     {:else if $films.data}
-        <tr>
-            <th>Title</th>
-            <th>Country</th>
-            <th>Release Year</th>
-            <th>Deletion</th>
-        </tr>
-        {#each $films.data.Films as film, key (film.id)}
+        {#if !($films.data.Films.length)}
+            <p>List is empty. Maybe you should add some films?</p>
+        {:else if ($films.data.Films.length)}
             <tr>
-                <td>{film.title}</td>
-                <td>{film.country}</td>
-                <td>{film.release_year}</td>
-                <td><RowDeleter filmID={film.id}/></td>
+                <th>Title</th>
+                <th>Country</th>
+                <th>Release Year</th>
+                <th>Deletion</th>
             </tr>
-        {/each}
+            {#each $films.data.Films as film, key (film.id)}
+                <tr>
+                    <td>{film.title}</td>
+                    <td>{film.country}</td>
+                    <td>{film.release_year}</td>
+                    <td>
+                        <RowDeleter filmID={film.id}/>
+                    </td>
+                </tr>
+            {/each}
+        {/if}
     {/if}
 </table>
 
