@@ -16,7 +16,7 @@
             <th>Release Year</th>
             <th>Deletion</th>
         </tr>
-        {#each $films.data.Films as film (film.id)}
+        {#each $films.data.Films as film, key (film.id)}
             <tr>
                 <td>{film.title}</td>
                 <td>{film.country}</td>
