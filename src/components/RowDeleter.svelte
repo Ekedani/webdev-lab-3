@@ -1,13 +1,9 @@
 <script>
     import {GraphQLRequests} from '../helpers/GraphQLRequests'
     import GraphQLHelper from '../helpers/GraphQLHelper'
-    import {getContext} from 'svelte';
-    import Message from "./Message.svelte";
     import { isLoading, modal } from '../store';
     import { bind } from 'svelte-simple-modal';
-    import MessageBox from './Message.svelte';
-
-    const {open} = getContext('simple-modal');
+    import Message from './Message.svelte';
 
     export let filmID;
 
@@ -15,9 +11,9 @@
         $isLoading++;
         try {
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_DeleteFilmById(filmID));
-            open(Message, {message: "Success!"})
+            $modal = bind(Message, {message: "Success!"})
         } catch (exception) {
-            modal.set(bind(MessageBox, { message: ("Error: " + exception.message)}));
+            $modal = bind(Message, { message: ("Error: " + exception.message)});
         }finally {
             $isLoading--;
         }

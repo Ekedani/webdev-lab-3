@@ -2,12 +2,8 @@
     import GraphQLHelper from "../helpers/GraphQLHelper";
     import {GraphQLRequests} from "../helpers/GraphQLRequests";
     import Message from "./Message.svelte";
-    import {getContext} from "svelte";
     import { isLoading, modal } from '../store';
     import { bind } from 'svelte-simple-modal';
-    import MessageBox from './Message.svelte';
-
-    const {open} = getContext('simple-modal');
 
     const defaultValue = '';
 
@@ -32,10 +28,10 @@
                 throw Error("Year must be integer from 1 to 9999!");
             }
             await GraphQLHelper.startExecuteMyMutation(GraphQLRequests.MUTATION_InsertFilm(title, country, year));
-            open(Message, {message: "Success!"})
+            $modal = bind(Message, {message: "Success!"})
             resetValues();
         } catch (exception) {
-            modal.set(bind(MessageBox, { message: ("Error: " + exception.message)}));
+            $modal = bind(Message, { message: ("Error: " + exception.message)});
         } finally {
             $isLoading--;
         }
